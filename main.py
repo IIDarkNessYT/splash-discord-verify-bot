@@ -75,9 +75,6 @@ class captcha_btn(discord.ui.View):
             if userdata[f'{interaction.user.id}'] == "verified":
                 await interaction.response.send_message(f"Извините, но Вы уже верифицированны!", ephemeral = True)
                 await interaction.user.add_roles(role)
-                channel = interaction.guild.get_channel(int(config['logchannel']))
-                embed = discord.Embed(title=f"{interaction.user.name} нажал кнопку верификации, но...", description="Данный пользователь уже был верифицирован!", color=discord.Color.green())
-                await channel.send(embed=embed)
             else:
                 await interaction.response.send_modal(captcha())
                 channel = interaction.guild.get_channel(int(config['logchannel']))
